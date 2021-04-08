@@ -22,7 +22,7 @@ server {
         listen 80;
         listen [::]:80;
 
-        server_name app.fvlrung.com;
+        server_name yourdomain.com;
 
         root /var/www/isign-php/public;
         index index.php;
@@ -40,8 +40,14 @@ server {
         }
 }
 ```
+
+```
 ln -s /etc/nginx/sites-available/isign-php /etc/nginx/sites-enabled/
+
 nginx -s reload
+```
+
+
 
 4. 申请证书(Let's Encrypt)
 ```
@@ -77,7 +83,7 @@ CREATE DATABASE `isign-php`;
 mysql -u root -p isign-php < /var/www/isign-php/isign-php.sql
 
 echo "sql_mode=''" >> /etc/mysql/mysql.conf.d/mysqld.cnf
-systemctl mysql restart
+service mysql restart
 ```
 
 7. 安装 isign
@@ -86,6 +92,12 @@ cd /var/www/
 git clone https://github.com/apperian/isign.git
 cd isign/
 pip install .
+```
+
+或者
+
+```
+pip install isign
 ```
 
 8. 后台地址：/admin
